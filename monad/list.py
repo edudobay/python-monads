@@ -1,8 +1,13 @@
+from abc import abstractmethod
 from .monad import Monad
 
 __all__ = ['List']
 
 class List(Monad):
+
+    @abstractmethod
+    def is_empty(self):
+        return NotImplemented
 
     @classmethod
     def empty(cls):
@@ -27,9 +32,6 @@ class List(Monad):
     @classmethod
     def zero(cls):
         return cls.empty()
-
-    def is_empty(self):
-        return not bool(self.values)
 
     @classmethod
     def concat(cls, lst1, lst2):
