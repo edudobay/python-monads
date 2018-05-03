@@ -29,13 +29,13 @@ def test_list_map():
     assert List.empty().map(lambda x: x * 2).is_empty()
     assert not List.of(1, 2, 3).map(lambda x: x * 2).is_empty()
 
-    assert_list_contains(
+    assert_list_matches(
         List.of(1, 2, 3).map(lambda x: x * 2),
         (2, 4, 6)
     )
 
 def test_list_flatmap():
-    assert_list_contains(
+    assert_list_matches(
         List.of(1, 2).flatmap(
             lambda x: List.of(x, -x)
         ),
@@ -43,7 +43,7 @@ def test_list_flatmap():
     )
 
 def test_list_filter():
-    assert_list_contains(
+    assert_list_matches(
         List.of(2, 3, 4, 5, 6, 7, 8, 9).filter(
             lambda x: x % 2 + x % 3 == 1
         ),
@@ -52,7 +52,7 @@ def test_list_filter():
 
 # ---
 
-def assert_list_contains(lst, elements):
+def assert_list_matches(lst, elements):
     tail = lst
 
     for element in elements:
@@ -62,7 +62,7 @@ def assert_list_contains(lst, elements):
 
     assert tail.is_empty(), 'end of list was expected'
 
-def test_assert_list_contains():
-    assert_list_contains(List.empty(), ())
-    assert_list_contains(List.of(1, 2, 3), (1, 2, 3))
+def test_assert_list_matches():
+    assert_list_matches(List.empty(), ())
+    assert_list_matches(List.of(1, 2, 3), (1, 2, 3))
 
