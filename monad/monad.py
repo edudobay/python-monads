@@ -7,6 +7,11 @@ class Monad(metaclass=ABCMeta):
     def flatmap(self, mapper):
         return NotImplemented
 
+    @classmethod
+    @abstractmethod
+    def unit(self):
+        return NotImplemented
+
     def map(self, mapper):
         return self.flatmap(lambda v: self.unit(mapper(v)))
 
